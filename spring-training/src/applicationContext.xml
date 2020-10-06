@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath:sport.properties"/>
+    <bean id="vegDietService" class="com.practise.springdemo.VegDietService">
+	</bean>
+	
+	<bean id="nonVegDietService" class="com.practise.springdemo.NonVegDietService">
+	</bean>
+	
+	<!-- Constructor Injection -->
+    <bean id="cricketCoachService" class="com.practise.springdemo.CricketCoachService">
+    	<constructor-arg ref="vegDietService"/>
+    	<property name="name" value="${obj.name}"/>
+    	<property name="email" value="cricketer@gmail.com"/>
+	</bean>
+	
+	<!-- Setter Injection -->
+	<bean id="footballCoachService" class="com.practise.springdemo.FootballCoachService">
+    	<property name="dietService" ref="nonVegDietService"/>
+	</bean>
+	
+</beans>
+
+
+
+
+
